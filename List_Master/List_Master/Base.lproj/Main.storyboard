@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeController" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,15 +23,40 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Mzl-Qs-sFb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="u5d-Ri-NdG" customClass="TodoTableViewCell" customModule="List_Master" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mzl-Qs-sFb" id="07L-OU-WJQ">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u5d-Ri-NdG" id="AiJ-pF-YMm">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bYf-ld-lJQ">
+                                                    <rect key="frame" x="20" y="0.0" width="216" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Priority: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SlI-eM-hkY">
+                                                    <rect key="frame" x="244" y="0.0" width="64" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Sbw-cV-Mdg">
+                                                    <rect key="frame" x="316" y="0.0" width="42" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="NuV-O8-qBa" kind="show" id="Dtl-Ld-cV3"/>
+                                            <outlet property="todoPriority" destination="Sbw-cV-Mdg" id="RQs-1D-ixQ"/>
+                                            <outlet property="todoTitle" destination="bYf-ld-lJQ" id="YfJ-RO-ttu"/>
+                                            <segue destination="NuV-O8-qBa" kind="show" id="25A-vv-07J"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -40,7 +65,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="lBe-go-mv8">
+                    <navigationItem key="navigationItem" title="Home" id="lBe-go-mv8">
                         <barButtonItem key="leftBarButtonItem" title="Category" id="Af5-zm-R26">
                             <connections>
                                 <segue destination="bp5-Wz-sio" kind="show" id="7Sl-sM-5mE"/>
@@ -52,9 +77,17 @@
                                     <segue destination="aGL-kT-DqN" kind="show" identifier="" id="0zk-al-R8P"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="edit" id="r0O-mT-B4q"/>
+                            <barButtonItem title="Edit" id="r0O-mT-B4q">
+                                <connections>
+                                    <action selector="editAction:" destination="BYZ-38-t0r" id="u73-DD-t69"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="editButton" destination="r0O-mT-B4q" id="tdu-cw-AoM"/>
+                        <outlet property="listTable" destination="VbJ-uz-SHJ" id="k5G-aW-l0b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -76,7 +109,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffY-g1-beh">
-                                <rect key="frame" x="20" y="109" width="60" height="33"/>
+                                <rect key="frame" x="-1" y="109" width="60" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -86,7 +119,6 @@
                                 <rect key="frame" x="20" y="202" width="374" height="213"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -107,9 +139,19 @@
                                 <date key="date" timeIntervalSinceReferenceDate="580044753.11522198">
                                     <!--2019-05-20 11:32:33 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="selectedDate:" destination="aGL-kT-DqN" eventType="valueChanged" id="igZ-0Y-RY2"/>
+                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Priority" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpA-fN-5Lq">
                                 <rect key="frame" x="140" y="462" width="135" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EWm-ar-dg3">
+                                <rect key="frame" x="17" y="167" width="78" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -120,10 +162,17 @@
                         <viewLayoutGuide key="safeArea" id="QSC-KV-mCr"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add Todo" id="SQ5-g2-rsc">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="MBh-D9-ZVb"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="MBh-D9-ZVb">
+                            <connections>
+                                <action selector="addList:" destination="aGL-kT-DqN" id="Efe-qJ-To1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="pickerView" destination="8V8-7C-N2k" id="swK-Ya-qmO"/>
+                        <outlet property="datePicker" destination="ghK-8s-ewj" id="llP-aF-PgF"/>
+                        <outlet property="descriptionText" destination="qlg-tD-y55" id="2m2-KK-tk1"/>
+                        <outlet property="priorityPicker" destination="8V8-7C-N2k" id="tCG-jv-nAh"/>
+                        <outlet property="titleText" destination="Ft3-46-Xhb" id="hc8-lM-bI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d93-gg-hqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,7 +182,7 @@
         <!--Category-->
         <scene sceneID="y0M-M3-gm0">
             <objects>
-                <viewController id="bp5-Wz-sio" sceneMemberID="viewController">
+                <viewController id="bp5-Wz-sio" customClass="CategoryListViewController" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cmd-cA-HOg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +238,7 @@
         <!--Category Name-->
         <scene sceneID="Zip-gK-QtP">
             <objects>
-                <viewController id="aS9-fe-uCx" sceneMemberID="viewController">
+                <viewController id="aS9-fe-uCx" customClass="CategoryViewController" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vaK-lz-shN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,6 +264,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aJF-h9-KLh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

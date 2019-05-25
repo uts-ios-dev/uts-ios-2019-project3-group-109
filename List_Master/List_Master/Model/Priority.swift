@@ -8,5 +8,5 @@
 
 import Foundation
 enum Priority:Int{
-    case Low = 1, Medium, High
+    case Low = 0, Medium, High
 }
