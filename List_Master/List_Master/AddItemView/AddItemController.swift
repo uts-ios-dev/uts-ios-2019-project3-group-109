@@ -33,7 +33,7 @@ class AddItemController: UIViewController{
             self.present(alert, animated: true, completion: nil)
         }
         else{
-            let newItem: TodoItem = TodoItem(id: TodoList.todos.count, title: title!, description: description, priority: priority, date: date)
+            let newItem: TodoItem = TodoItem(id: UUID(), title: title!, description: description, priority: priority, date: date)
             TodoList.addTodo(newTodo: newItem)
             self.navigationController?.popViewController(animated: true)
         }

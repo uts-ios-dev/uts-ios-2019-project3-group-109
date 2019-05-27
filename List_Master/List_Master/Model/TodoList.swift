@@ -12,27 +12,36 @@ struct TodoList {
     static func addTodo(newTodo: TodoItem) {
         todos.append(newTodo)
     }
-    static func deleteTodo(todo: TodoItem) {
-        todos.remove(at: todo.id)
+    static func deleteTodo(todoIndex: Int) {
+        todos.remove(at: todoIndex)
     }
     static func loadTodos() {
         guard let data = UserDefaults.standard.object(forKey: "todoItems") as? [[String: AnyObject]] else {
             return
         }
         todos = data.map {
-            let id = $0["id"] as? Int
+            let id = $0["id"] as? String
             let title = $0["title"] as? String
             let description = $0["description"] as? String
             let priority = $0["priority"] as? String
             let date = $0["date"] as? String
             
-            return TodoItem(id: id!, title: title!, description: description!, priority: priority!, date: date!)
+            return TodoItem(id: UUID(uuidString: id!)!, title: title!, description: description!, priority: priority!, date: date!)
         }
     }
+    static func findTodo(todoID: UUID) -> TodoItem?{
+        for todo in todos {
+            if (todo.id == todoID){
+                return todo
+            }
+        }
+        return nil
+    }
+   
     static func saveTodos() {
         let data = todos.map {
             [
-                "id": $0.id,
+                "id": $0.id.uuidString,
                 "title": $0.title, 
                 "description": $0.description!,
                 "priority": $0.priority,

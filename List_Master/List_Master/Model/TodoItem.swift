@@ -7,18 +7,20 @@
 //
 
 import Foundation
-struct TodoItem {
-    var id: Int = 0
+class TodoItem {
+    var id: UUID
     var title:String = ""
     var description: String?
     var priority: String
     var date: String
+    var completed: Bool
     
-    init(id:Int, title:String, description: String?, priority: String, date: String) {
-        self.id = id
+    init(id:UUID, title:String, description: String?, priority: String, date: String) {
+        self.id = UUID()
         self.title = title
         self.description = description
         self.priority = priority
         self.date = date
+        self.completed = false
     }
 }
