@@ -44,7 +44,9 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
             ///在点击加新的category之后的会做的action
             let newCategory = Category(title:titleText.text!)
             self.categoryList.append(newCategory)
-            self.loadList()
+            if UserDefaults.standard.array(forKey: "CategoryName") != nil{
+                self.loadList()
+            }
             self.nameContent.append(newCategory.getTitle())
             self.itemContent.append(newCategory.getData())
             //从原有userdefault中抽出已经存的data放进array中再添加新加的category进去变成更新后的全部category的array
