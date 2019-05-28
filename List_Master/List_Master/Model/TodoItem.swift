@@ -13,7 +13,7 @@ class TodoItem {
     var description: String?
     var priority: String
     var date: String
-    var completed: Bool
+    var completed: Bool = false
     
     init(id:UUID, title:String, description: String?, priority: String, date: String) {
         self.id = UUID()
@@ -21,6 +21,16 @@ class TodoItem {
         self.description = description
         self.priority = priority
         self.date = date
-        self.completed = false
+       
+    }
+    func reformatPriority() ->Priority{
+        switch priority {
+        case "Low":
+            return Priority.Low
+        case "Medium":
+            return Priority.Medium
+        default:
+            return Priority.High
+        }
     }
 }

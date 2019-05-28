@@ -65,11 +65,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="lBe-go-mv8">
-                        <barButtonItem key="leftBarButtonItem" title="Category" id="Af5-zm-R26">
-                            <connections>
-                                <segue destination="bp5-Wz-sio" kind="show" id="7Sl-sM-5mE"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Category" id="Af5-zm-R26">
+                                <connections>
+                                    <segue destination="bp5-Wz-sio" kind="show" id="7Sl-sM-5mE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Sort" id="0pf-9S-MrK">
+                                <connections>
+                                    <action selector="sortAction:" destination="BYZ-38-t0r" id="1Fb-Bm-24I"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="Qt6-SO-Ihm">
                                 <connections>
@@ -86,6 +93,7 @@
                     <connections>
                         <outlet property="editButton" destination="r0O-mT-B4q" id="tdu-cw-AoM"/>
                         <outlet property="listTable" destination="VbJ-uz-SHJ" id="k5G-aW-l0b"/>
+                        <outlet property="sortButton" destination="0pf-9S-MrK" id="O6C-wJ-oHt"/>
                         <segue destination="NuV-O8-qBa" kind="show" identifier="HomeToDetail" id="UO9-dl-q26"/>
                     </connections>
                 </viewController>
