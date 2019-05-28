@@ -18,6 +18,7 @@ class TodoDetailViewcontroller: UIViewController{
     
     var todoId: UUID?
     var todo: TodoItem?
+    var checkButtonSelected = false
     let priority = ["Low","Medium", "High"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,16 +43,23 @@ class TodoDetailViewcontroller: UIViewController{
         descriptionText.isUserInteractionEnabled = false
         priorityText.isUserInteractionEnabled = false
         dateText.isUserInteractionEnabled = false
+        checkButton.isUserInteractionEnabled = false
     }
     func editMode() {
         titleText.isUserInteractionEnabled = true
         descriptionText.isUserInteractionEnabled = true
         priorityText.isUserInteractionEnabled = true
         dateText.isUserInteractionEnabled = true
+        checkButton.isUserInteractionEnabled = true
     }
     func setupCheckButton() {
         checkButton.setImage(UIImage(named: "Checkmarkempty"), for: .normal)
         checkButton.setImage(UIImage(named: "Checkmark"), for: .selected)
+        if todo!.completed {
+            checkButton.isSelected = true
+        }else{
+            checkButton.isSelected = false
+        }
     }
     func setupPriorityField() {
         let priorityPicker = UIPickerView()
@@ -81,6 +89,7 @@ class TodoDetailViewcontroller: UIViewController{
         if sender.title == "Edit" {
            
             updateTodo()
+            TodoList.saveTodos()
             viewMode()
             print(String(TodoList.findTodo(todoID: todoId!)?.priority ?? ""))
             print(String(TodoList.findTodo(todoID: todoId!)?.date ?? ""))
@@ -92,18 +101,23 @@ class TodoDetailViewcontroller: UIViewController{
     @IBAction func checkButtonTap(_ sender: UIButton) {
         UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveLinear, animations: {
             sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            
         }) { (success) in
             UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveLinear, animations: {
                 sender.isSelected = !sender.isSelected
                 sender.transform = .identity
             }, completion: nil)
         }
-        
-        
-        
+        checkButtonSelected = !checkButtonSelected
+        updateTodoStatus()
+        print(Bool(TodoList.findTodo(todoID: todoId!)!.completed))
     }
-    
+    func updateTodoStatus (){
+        if checkButtonSelected {
+            todo?.completed = true
+        }else {
+            todo?.completed = false
+        }
+    }
     func loadTodo() {
         if (todo != nil) {
             titleText.text = todo!.title

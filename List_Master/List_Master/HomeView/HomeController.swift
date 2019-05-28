@@ -59,6 +59,11 @@ extension HomeController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TodoTableViewCell
         cell.todoTitle.text = TodoList.todos[indexPath.row].title
         cell.todoPriority.text = TodoList.todos[indexPath.row].priority
+        if TodoList.todos[indexPath.row].completed {
+            cell.accessoryType = .checkmark
+        }else{
+            cell.accessoryType = .none
+        }
     
         
         return cell
