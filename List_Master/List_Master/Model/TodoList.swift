@@ -6,17 +6,20 @@
 //  Copyright © 2019 au.edu.uts. All rights reserved.
 //
 
+/*Class TodoList is a model that store todos as a list (array), the model includes some methods to manipulate todo data*/
 import Foundation
 class TodoList {
-    static var todos: [TodoItem] = []
-    static var sortedTodos: [TodoItem] = []
+    static var todos: [TodoItem] = []    //array that store sources todo data
+    static var sortedTodos: [TodoItem] = []  //array that store sorted todo
     static func addTodo(newTodo: TodoItem) {
         todos.append(newTodo)
     }
+    /*deteTodo() is a method to delete todo from todo list by taking todo ID as input, each todo has an unique ID*/
     static func deleteTodo(todoID: UUID) {
         let index = todos.firstIndex(where: { $0.id == todoID })!
         todos.remove(at: index)
     }
+    /* loadTodos() is the method that load todolist from UserDefault.standard. Because UserDefault.standard can not store customized object type. Instead of storing object, we are storing parameters that used to construct a object*/
     static func loadTodos() {
         guard let data = UserDefaults.standard.object(forKey: "todoItems") as? [[String: AnyObject]] else {
             return
@@ -34,7 +37,7 @@ class TodoList {
         }
     }
     
-   
+   /*saveTodos() is a method to save todolist to local memory by using UserDefault.standard. Again, since UserDefault can not store customized object type, we store the parameters used to construct a object*/
     static func saveTodos() {
         let data = todos.map {
             [
@@ -49,6 +52,7 @@ class TodoList {
         UserDefaults.standard.set(data, forKey: "todoItems")
         UserDefaults.standard.synchronize()
     }
+    /*findTodo() is a method to find a todo by searching the todo id*/
     static func findTodo(todoID: UUID) -> TodoItem?{
         for todo in todos {
             if (todo.id == todoID){
@@ -57,6 +61,7 @@ class TodoList {
         }
         return nil
     }
+    /*sort todos according to their priority, from high to low*/
     static func SortByPriority() {
         sortedTodos = todos.sorted(by: { $0.reformatPriority().rawValue > $1.reformatPriority().rawValue})
     }

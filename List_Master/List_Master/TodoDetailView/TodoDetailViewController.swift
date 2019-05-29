@@ -6,6 +6,7 @@
 //  Copyright © 2019 au.edu.uts. All rights reserved.
 //
 
+/*TodoDetailViewcontroller is the view controller for todo detail view*/
 import UIKit
 import Foundation
 class TodoDetailViewcontroller: UIViewController{
@@ -19,7 +20,7 @@ class TodoDetailViewcontroller: UIViewController{
     var todoId: UUID?
     var todo: TodoItem?
     var checkButtonSelected = false
-    let priority = ["Low","Medium", "High"]
+    let priority = ["Low","Medium", "High"] //define a array of priority
     override func viewDidLoad() {
         super.viewDidLoad()
         todo = TodoList.findTodo(todoID: todoId!)
@@ -28,16 +29,17 @@ class TodoDetailViewcontroller: UIViewController{
         initiate()
         
     }
-    
+    /*initiate() is a method that initiate the components' state in this view*/
     func initiate() {
         descriptionText.layer.borderColor = UIColor.gray.cgColor
         descriptionText.layer.borderWidth = 0.3
         descriptionText.layer.cornerRadius = 2.0
-        descriptionText.clipsToBounds = true
-        viewMode()
-        loadTodo()
+        descriptionText.clipsToBounds = true      //define the style of description text field
+        viewMode()   //when user first enter to detail view all components should not be editable, unless 'Edit' button is clicked
+        loadTodo()  //load details of the selected todo
         setupCheckButton()
     }
+    /*viewMode() make all components non-editable*/
     func viewMode() {
         titleText.isUserInteractionEnabled = false
         descriptionText.isUserInteractionEnabled = false
@@ -45,6 +47,7 @@ class TodoDetailViewcontroller: UIViewController{
         dateText.isUserInteractionEnabled = false
         checkButton.isUserInteractionEnabled = false
     }
+    /*editMode() allow user to edit field such as title, description , etc*/
     func editMode() {
         titleText.isUserInteractionEnabled = true
         descriptionText.isUserInteractionEnabled = true
@@ -52,6 +55,7 @@ class TodoDetailViewcontroller: UIViewController{
         dateText.isUserInteractionEnabled = true
         checkButton.isUserInteractionEnabled = true
     }
+    /*setupCheckButton() set up a check button for todo completetion*/
     func setupCheckButton() {
         checkButton.setImage(UIImage(named: "Checkmarkempty"), for: .normal)
         checkButton.setImage(UIImage(named: "Checkmark"), for: .selected)
@@ -61,29 +65,33 @@ class TodoDetailViewcontroller: UIViewController{
             checkButton.isSelected = false
         }
     }
+    /*setupPriorityField() set up priority text field, when text field is clicked, a picker view is triggled instead of keyboard*/
     func setupPriorityField() {
         let priorityPicker = UIPickerView()
         priorityPicker.delegate = self
         priorityPicker.selectRow(0, inComponent: 0, animated: true)
         priorityText.inputView = priorityPicker
     }
+    /*setupDateField() set up date text field, when text field is clicked, a picker view is triggled instead of keyboard*/
     func setupDateField() {
         let datePicker = UIDatePicker()
         dateText.inputView = datePicker
         datePicker.addTarget(self, action: #selector(TodoDetailViewcontroller.dateChanged(datePicker:)), for: .valueChanged)
     }
+    /*dateChanged() handle the event generated when user change date through date picker, date of todo is changed accorddingly*/
     @objc func dateChanged(datePicker: UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateText.text = formatter.string(from: datePicker.date)
         todo?.date = formatter.string(from: datePicker.date)
     }
+    /*updateTodo()  update other two fields, title and description*/
     func updateTodo() {
         todo!.title = titleText.text ?? ""
         todo!.description = descriptionText.text ?? ""
         
     }
-   
+   /*editButtonTap() handle the event generated when user click on the edit button, when edit button is click, it changed to 'Done' button. User can edit fields after the 'edit' button is clicked. When 'Done button is clicked, updated todo will be saved to todo list.'*/
     @IBAction func editButtonTap(_ sender: UIBarButtonItem) {
         sender.title = sender.title == "Edit" ? "Done":"Edit"
         if sender.title == "Edit" {
@@ -91,13 +99,11 @@ class TodoDetailViewcontroller: UIViewController{
             updateTodo()
             TodoList.saveTodos()
             viewMode()
-            print(String(TodoList.findTodo(todoID: todoId!)?.priority ?? ""))
-            print(String(TodoList.findTodo(todoID: todoId!)?.date ?? ""))
         }else{
             editMode()
         }
     }
-    
+    /*checkButtonTap() handle click event on Check button, if the button is clicked, todo status is set to be completed. if the button is unclicked, todo status is set to be umcompleted*/
     @IBAction func checkButtonTap(_ sender: UIButton) {
         UIView.animate(withDuration: 0.5, delay: 0.1, options: .curveLinear, animations: {
             sender.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
@@ -106,11 +112,11 @@ class TodoDetailViewcontroller: UIViewController{
                 sender.isSelected = !sender.isSelected
                 sender.transform = .identity
             }, completion: nil)
-        }
-        checkButtonSelected = !checkButtonSelected
+        }  //set up button animation
+        checkButtonSelected = !checkButtonSelected  // track the status of check button
         updateTodoStatus()
-        print(Bool(TodoList.findTodo(todoID: todoId!)!.completed))
     }
+    /*updateTodoStatus() is to update the status of todo (completed or uncompleted), associated with checkButtonTap() method*/
     func updateTodoStatus (){
         if checkButtonSelected {
             todo?.completed = true
@@ -118,6 +124,7 @@ class TodoDetailViewcontroller: UIViewController{
             todo?.completed = false
         }
     }
+    /*load selected todo data*/
     func loadTodo() {
         if (todo != nil) {
             titleText.text = todo!.title
@@ -128,6 +135,7 @@ class TodoDetailViewcontroller: UIViewController{
         
     }
 }
+/*The following extension is to define the attributed of priority picker view*/
 extension TodoDetailViewcontroller: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

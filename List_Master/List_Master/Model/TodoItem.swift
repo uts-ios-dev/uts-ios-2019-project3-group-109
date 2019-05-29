@@ -6,9 +6,10 @@
 //  Copyright © 2019 au.edu.uts. All rights reserved.
 //
 
+ /* TodoItem is a data model to store each individual todo*/
 import Foundation
 class TodoItem {
-    var id: UUID
+    var id: UUID             //each todo has a unique ID
     var title:String = ""
     var description: String?
     var priority: String
@@ -23,6 +24,7 @@ class TodoItem {
         self.date = date
        
     }
+    /*reformatPriority() is a method that reformat todo's priority from String to a iterable Enum, which is useful in sorting todos based on priority*/
     func reformatPriority() ->Priority{
         switch priority {
         case "Low":

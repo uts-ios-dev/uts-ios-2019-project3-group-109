@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*The following class define the content of each cell in table view*/
 class TodoTableViewCell: UITableViewCell {
     @IBOutlet weak var todoTitle: UILabel!
     @IBOutlet weak var todoPriority: UILabel!
