@@ -113,6 +113,7 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
         let cells = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryViewCell
         let name = nameContent[indexPath.row]
         cells.categoryTitle.text = name
+        cells.folderIcon.image = UIImage(named: "folder-icon")
         return cells
     }
     

@@ -19,6 +19,9 @@ class TodoList {
     static func deleteTodo(todoID: UUID) {
         let index = todos.firstIndex(where: { $0.id == todoID })!
         todos.remove(at: index)
+        if !sortedTodos.isEmpty {
+            sortedTodos.remove(at: index)
+        }
     }
     /* loadTodos() is the method that load todolist from UserDefault.standard. Because UserDefault.standard can not store customized object type. Instead of storing object, we are storing parameters that used to construct a object*/
     static func loadTodos() {
