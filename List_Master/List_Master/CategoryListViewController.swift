@@ -80,10 +80,10 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if segue.identifier == "CategoryItemShow" {
-            let target = segue.destination as? CategoryViewController
-            //For any data to be transferred to next page
-        }
+//        if segue.identifier == "CategoryItemShow" {
+//            let target = segue.destination as? CategoryViewController
+//            //For any data to be transferred to next page
+//        }
     }
     func saveList(){
         UserDefaults.standard.removeObject(forKey: "CategoryName")
@@ -124,6 +124,13 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
             
         }
         
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cateVc:CategoryViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
+        if (nameContent[indexPath.row] != ""){
+            cateVc.cateName = "cateoryList"+nameContent[indexPath.row]
+            self.navigationController?.pushViewController(cateVc, animated: true)
+        }
     }
 }
 

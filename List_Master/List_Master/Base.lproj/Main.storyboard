@@ -250,7 +250,6 @@
                                         <connections>
                                             <outlet property="categoryTitle" destination="deW-e1-CX9" id="y2o-8n-bfY"/>
                                             <outlet property="folderIcon" destination="W5K-Zy-nCl" id="A9K-WH-rNB"/>
-                                            <segue destination="aS9-fe-uCx" kind="show" identifier="CategoryItemShow" id="toa-2s-2MP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -286,7 +285,7 @@
         <!--Todo Detail-->
         <scene sceneID="OQp-nH-zpd">
             <objects>
-                <viewController id="NuV-O8-qBa" customClass="TodoDetailViewcontroller" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TodoDetailViewcontroller" id="NuV-O8-qBa" customClass="TodoDetailViewcontroller" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b8z-q7-Z40">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,7 +387,7 @@
         <!--Category Name-->
         <scene sceneID="Zip-gK-QtP">
             <objects>
-                <viewController id="aS9-fe-uCx" customClass="CategoryViewController" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryViewController" id="aS9-fe-uCx" customClass="CategoryViewController" customModule="List_Master" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vaK-lz-shN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -398,13 +397,53 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="vjw-09-gFa">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="5Pg-7e-fre" customClass="TodoTableViewCell" customModule="List_Master" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vjw-09-gFa" id="xC8-6J-S8f">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Pg-7e-fre" id="paj-t9-xvN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0ab-II-CiL">
+                                                    <rect key="frame" x="20" y="0.0" width="216" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="216" id="8on-DF-3Jt"/>
+                                                        <constraint firstAttribute="height" constant="44" id="SiV-Eb-fHd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priority: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4Tj-IJ-ckb">
+                                                    <rect key="frame" x="244" y="0.0" width="64" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kYn-1F-8wk">
+                                                    <rect key="frame" x="316" y="0.0" width="42" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="4Tj-IJ-ckb" firstAttribute="baseline" secondItem="0ab-II-CiL" secondAttribute="baseline" id="4yA-Tk-qE0"/>
+                                                <constraint firstItem="4Tj-IJ-ckb" firstAttribute="firstBaseline" secondItem="kYn-1F-8wk" secondAttribute="firstBaseline" id="8lj-5I-cdN"/>
+                                                <constraint firstItem="4Tj-IJ-ckb" firstAttribute="leading" secondItem="0ab-II-CiL" secondAttribute="trailing" constant="8" symbolic="YES" id="Cmu-mU-bbm"/>
+                                                <constraint firstItem="4Tj-IJ-ckb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0ab-II-CiL" secondAttribute="trailing" constant="8" symbolic="YES" id="Eka-f2-XLz"/>
+                                                <constraint firstItem="kYn-1F-8wk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4Tj-IJ-ckb" secondAttribute="trailing" constant="8" symbolic="YES" id="KSY-aJ-hbo"/>
+                                                <constraint firstItem="4Tj-IJ-ckb" firstAttribute="firstBaseline" secondItem="0ab-II-CiL" secondAttribute="firstBaseline" id="OZc-nI-QU4"/>
+                                                <constraint firstItem="0ab-II-CiL" firstAttribute="top" secondItem="paj-t9-xvN" secondAttribute="top" id="hiR-Th-9KR"/>
+                                                <constraint firstAttribute="trailing" secondItem="kYn-1F-8wk" secondAttribute="trailing" constant="56" id="iCS-6V-2Bj"/>
+                                                <constraint firstItem="4Tj-IJ-ckb" firstAttribute="baseline" secondItem="kYn-1F-8wk" secondAttribute="baseline" id="k4V-9D-xjr"/>
+                                                <constraint firstItem="0ab-II-CiL" firstAttribute="leading" secondItem="paj-t9-xvN" secondAttribute="leading" constant="20" id="oaY-Lo-fRS"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="todoPriority" destination="kYn-1F-8wk" id="lVL-Xp-18U"/>
+                                            <outlet property="todoTitle" destination="0ab-II-CiL" id="O2G-KG-fzv"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -414,7 +453,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Category Name" id="u1c-5n-W40">
                         <rightBarButtonItems>
-                            <barButtonItem title="Import" id="K5k-lg-XKB"/>
+                            <barButtonItem title="Import" id="K5k-lg-XKB">
+                                <connections>
+                                    <action selector="importBtnAction:" destination="aS9-fe-uCx" id="ShB-TF-hgu"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem systemItem="edit" id="Ong-oc-37a">
                                 <connections>
                                     <action selector="editContent:" destination="aS9-fe-uCx" id="SOY-Mk-BN6"/>

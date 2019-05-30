@@ -23,7 +23,9 @@ class TodoDetailViewcontroller: UIViewController{
     let priority = ["Low","Medium", "High"] //define a array of priority
     override func viewDidLoad() {
         super.viewDidLoad()
-        todo = TodoList.findTodo(todoID: todoId!)
+        if todo == nil {
+            todo = TodoList.findTodo(todoID: todoId!)
+        }
         setupPriorityField()
         setupDateField()
         initiate()
