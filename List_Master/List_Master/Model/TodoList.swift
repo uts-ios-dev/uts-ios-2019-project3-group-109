@@ -8,6 +8,7 @@
 
 /*Class TodoList is a model that store todos as a list (array), the model includes some methods to manipulate todo data*/
 import Foundation
+import UIKit
 class TodoList {
     static var todos: [TodoItem] = []    //array that store sources todo data
     static var sortedTodos: [TodoItem] = []  //array that store sorted todo
@@ -24,17 +25,22 @@ class TodoList {
         guard let data = UserDefaults.standard.object(forKey: "todoItems") as? [[String: AnyObject]] else {
             return
         }
-        todos = data.map {
-            let id = $0["id"] as? String
-            let title = $0["title"] as? String
-            let description = $0["description"] as? String
-            let priority = $0["priority"] as? String
-            let date = $0["date"] as? String
-            let completed = $0["completed"] as? Bool
-            let todo = TodoItem(id: UUID(uuidString: id!)!, title: title!, description: description!, priority: priority!, date: date!)
-            todo.completed = completed ?? false
-            return todo
+        do {
+            todos = data.map {
+                let id = $0["id"] as? String
+                let title = $0["title"] as? String
+                let description = $0["description"] as? String
+                let priority = $0["priority"] as? String
+                let date = $0["date"] as? String
+                let completed = $0["completed"] as? Bool
+                let todo = TodoItem(id: UUID(uuidString: id!)!, title: title!, description: description!, priority: priority!, date: date!)
+                todo.completed = completed ?? false
+                return todo
+            }
+        } catch{
+            print("no todos found in the memeroy")
         }
+       
     }
     
    /*saveTodos() is a method to save todolist to local memory by using UserDefault.standard. Again, since UserDefault can not store customized object type, we store the parameters used to construct a object*/
