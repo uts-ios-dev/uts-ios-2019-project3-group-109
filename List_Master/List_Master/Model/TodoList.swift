@@ -25,7 +25,7 @@ class TodoList {
         guard let data = UserDefaults.standard.object(forKey: "todoItems") as? [[String: AnyObject]] else {
             return
         }
-        do {
+      
             todos = data.map {
                 let id = $0["id"] as? String
                 let title = $0["title"] as? String
@@ -36,10 +36,9 @@ class TodoList {
                 let todo = TodoItem(id: UUID(uuidString: id!)!, title: title!, description: description!, priority: priority!, date: date!)
                 todo.completed = completed ?? false
                 return todo
-            }
-        } catch{
-            print("no todos found in the memeroy")
         }
+        
+       
 
     }
 
