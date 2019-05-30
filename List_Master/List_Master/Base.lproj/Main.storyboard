@@ -266,7 +266,7 @@
                                     <action selector="addTapped:" destination="bp5-Wz-sio" id="zid-Nm-mRN"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="edit" id="Mmz-HS-D7v">
+                            <barButtonItem title="Edit" id="Mmz-HS-D7v">
                                 <connections>
                                     <action selector="editTapped:" destination="bp5-Wz-sio" id="5t5-sE-qTr"/>
                                 </connections>
@@ -276,7 +276,7 @@
                     <connections>
                         <outlet property="categoryTable" destination="Gk3-Xo-Ene" id="dDy-2H-LTS"/>
                         <outlet property="createCategory" destination="npX-yu-RNk" id="DIO-sa-K88"/>
-                        <outlet property="editButton" destination="Mmz-HS-D7v" id="Agc-VW-08c"/>
+                        <outlet property="editClicker" destination="Mmz-HS-D7v" id="MxI-E7-huG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fv8-R8-1S8" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,7 +13,7 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
     
     @IBOutlet weak var createCategory: UIBarButtonItem!
     @IBOutlet weak var categoryTable: UITableView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var editClicker: UIBarButtonItem!
     
     var categoryList = [Category]()
     var nameContent = [String]()//The array of categories' names
@@ -23,12 +23,7 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
     
     @IBAction func editTapped(_ sender: UIBarButtonItem) {
         self.categoryTable.isEditing = !self.categoryTable.isEditing
-        if self.categoryTable.isEditing == true {
-            sender.title = "Done"
-        } else {
-            sender.title = "Edit"
-            
-        }
+        editClicker.title = (self.categoryTable.isEditing) ? "Done" : "Edit"
     //Tap edit to change the current editing situation
 
     }
