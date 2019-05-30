@@ -20,6 +20,7 @@
 		3557CFE82292ACB50024F0D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3557CFE62292ACB50024F0D5 /* LaunchScreen.storyboard */; };
 		3557CFF62292B6180024F0D5 /* AddItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557CFF52292B6180024F0D5 /* AddItemController.swift */; };
 		3557CFF82292C8CE0024F0D5 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557CFF72292C8CE0024F0D5 /* Priority.swift */; };
+		595A2694229F821900E10D79 /* CategoryViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595A2693229F821900E10D79 /* CategoryViewCell.swift */; };
 		5961DDDF229C1EBC006481AA /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961DDDE229C1EBC006481AA /* Category.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		3557CFE92292ACB50024F0D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3557CFF52292B6180024F0D5 /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		3557CFF72292C8CE0024F0D5 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		595A2693229F821900E10D79 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
 		5961DDDE229C1EBC006481AA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +128,7 @@
 				3557CFE62292ACB50024F0D5 /* LaunchScreen.storyboard */,
 				3557CFE92292ACB50024F0D5 /* Info.plist */,
 				350D7AE322966D6500D6A02A /* CategoryListViewController.swift */,
+				595A2693229F821900E10D79 /* CategoryViewCell.swift */,
 				350D7AE522966E1700D6A02A /* CategoryController.swift */,
 			);
 			path = List_Master;
@@ -212,6 +215,7 @@
 				3557CFDE2292ACB40024F0D5 /* AppDelegate.swift in Sources */,
 				3557CFF82292C8CE0024F0D5 /* Priority.swift in Sources */,
 				350D7AE622966E1700D6A02A /* CategoryController.swift in Sources */,
+				595A2694229F821900E10D79 /* CategoryViewCell.swift in Sources */,
 				5961DDDF229C1EBC006481AA /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

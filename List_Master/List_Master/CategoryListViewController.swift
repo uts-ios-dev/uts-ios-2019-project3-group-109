@@ -8,22 +8,6 @@
 import UIKit
 import Foundation
 
-class CategoryTableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var categoryTitle: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
-}
 
 class CategoryListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
@@ -32,8 +16,8 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     var categoryList = [Category]()
-    var nameContent = [String]()
-    var itemContent = [[Any]]()
+    var nameContent = [String]()//The array of categories' names
+    var itemContent = [[Any]]()//The array of categories' names and their items
     var tappedName : String = ""
     
     
@@ -45,7 +29,7 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
             sender.title = "Edit"
             
         }
-            //点击edit切换被编辑页面状态
+    //Tap edit to change the current editing situation
 
     }
     
@@ -56,10 +40,10 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
         categorySet.addTextField { (setName) in
             titleText = setName
         }
-        //在点击create后显示alert画面要求输入category名字并添加
+        //After click the add button, show alert to require name of new category
         let action = UIAlertAction(title:"Add",style: .default){
             (action) in
-            ///在点击加新的category之后的会做的action
+        //Action after tap add button on alert
             let newCategory = Category(title:titleText.text!)
             self.categoryList.append(newCategory)
             if UserDefaults.standard.array(forKey: "CategoryName") != nil{
@@ -67,9 +51,10 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
             }
             self.nameContent.append(newCategory.getTitle())
             self.itemContent.append(newCategory.getData())
-            //从原有userdefault中抽出已经存的data放进array中再添加新加的category进去变成更新后的全部category的array
+        //Extract stored items from userdefault (if any) to empty arrays and add new added item to these arrays
             self.saveList()
             self.categoryTable.reloadData()
+        //After update the current category array, save data to userdefault and reload table data
         }
         categorySet.addAction(action)
         present(categorySet, animated: true, completion: nil)
@@ -99,21 +84,21 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
         UserDefaults.standard.set(nameContent,forKey: "CategoryName")
         UserDefaults.standard.set(itemContent, forKey: "CategoryItem")
         UserDefaults.standard.synchronize()
-        //这里面是把已有category的名字单独存一个array，把category的名字和他们对应的item存在另一个array（为下个页面准备的，但感觉不太对），存userdefault的时候需要先删除原有信息再把更新过的array存进去
+        //Save all category name and items in them into two arrays, update and save entire array each time changes are made, when saving, first remove current array from userdefault and then store new array to userdefault
     }
     
     func loadList() {
-        nameContent = UserDefaults.standard.array(forKey: "CategoryName") as! Array<String>
-        itemContent = UserDefaults.standard.array(forKey: "CategoryItem") as! [[Any]]
+        nameContent = UserDefaults.standard.array(forKey: "CategoryName") as! Array<String>//Category names
+        itemContent = UserDefaults.standard.array(forKey: "CategoryItem") as! [[Any]]//Category name and items in it
     }
-    //从userdefault中拖出已经存的array并存在variable中
+    //When loading data, extract usersdefault information and store to two arrays
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return nameContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cells = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryTableViewCell
+        let cells = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath) as! CategoryViewCell
         let name = nameContent[indexPath.row]
         cells.categoryTitle.text = name
         return cells
@@ -125,10 +110,9 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
             itemContent.remove(at:indexPath.item)
             saveList()
             categoryTable.deleteRows(at: [indexPath], with: .automatic)
-            //编辑页面，被删除的category会被从array中删除
+            //When editing page using editing style tableview, remove item from two arrays then save data to userdefault
         }
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-            //可以return被点击的一行的indexpath.row，目前没有写东西
             
         }
         
