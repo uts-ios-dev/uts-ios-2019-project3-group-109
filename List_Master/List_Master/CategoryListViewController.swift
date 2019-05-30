@@ -44,17 +44,29 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
         let action = UIAlertAction(title:"Add",style: .default){
             (action) in
         //Action after tap add button on alert
-            let newCategory = Category(title:titleText.text!)
-            self.categoryList.append(newCategory)
-            if UserDefaults.standard.array(forKey: "CategoryName") != nil{
-                self.loadList()
+            if titleText.text != ""{
+                let newCategory = Category(title:titleText.text!)
+                self.categoryList.append(newCategory)
+                if UserDefaults.standard.array(forKey: "CategoryName") != nil{
+                    self.loadList()
+                }
+                self.nameContent.append(newCategory.getTitle())
+                self.itemContent.append(newCategory.getData())
+                //Extract stored items from userdefault (if any) to empty arrays and add new added item to these arrays
+                self.saveList()
+                self.categoryTable.reloadData()
+                //After update the current category array, save data to userdefault and reload table data
+            } else {
+                let alert = UIAlertController(title:"Please enter category title",message:"",preferredStyle: .alert)
+                let actionOk = UIAlertAction(title:"Ok", style:.default){
+                    (actionOk) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                alert.addAction(actionOk)
+                self.present(alert,animated: true,completion: nil)
+                //If input textfield is nil, show another alert controller minding user to tap non-nil input to category title
             }
-            self.nameContent.append(newCategory.getTitle())
-            self.itemContent.append(newCategory.getData())
-        //Extract stored items from userdefault (if any) to empty arrays and add new added item to these arrays
-            self.saveList()
-            self.categoryTable.reloadData()
-        //After update the current category array, save data to userdefault and reload table data
+           
         }
         categorySet.addAction(action)
         present(categorySet, animated: true, completion: nil)

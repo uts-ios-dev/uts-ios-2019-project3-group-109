@@ -31,6 +31,7 @@ class TodoList {
             let priority = $0["priority"] as? String
             let date = $0["date"] as? String
             let completed = $0["completed"] as? Bool
+            
             let todo = TodoItem(id: UUID(uuidString: id!)!, title: title!, description: description!, priority: priority!, date: date!)
             todo.completed = completed ?? false
             return todo

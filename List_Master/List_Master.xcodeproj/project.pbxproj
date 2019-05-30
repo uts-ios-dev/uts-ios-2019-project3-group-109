@@ -41,6 +41,7 @@
 		3557CFF52292B6180024F0D5 /* AddItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemController.swift; sourceTree = "<group>"; };
 		3557CFF72292C8CE0024F0D5 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
 		595A2693229F821900E10D79 /* CategoryViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewCell.swift; sourceTree = "<group>"; };
+		595A269D229F867E00E10D79 /* foldericon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foldericon.png; sourceTree = "<group>"; };
 		5961DDDE229C1EBC006481AA /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +124,7 @@
 				3507822E2299669100CC8E6E /* AddItemView */,
 				3507822D2299667500CC8E6E /* HomeView */,
 				3557CFDD2292ACB40024F0D5 /* AppDelegate.swift */,
+				595A269D229F867E00E10D79 /* foldericon.png */,
 				3557CFE12292ACB40024F0D5 /* Main.storyboard */,
 				3557CFE42292ACB50024F0D5 /* Assets.xcassets */,
 				3557CFE62292ACB50024F0D5 /* LaunchScreen.storyboard */,

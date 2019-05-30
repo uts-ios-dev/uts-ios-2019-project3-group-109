@@ -11,6 +11,7 @@ import UIKit
 class CategoryViewCell: UITableViewCell {
 
     @IBOutlet weak var categoryTitle: UILabel!
+    @IBOutlet weak var folderIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
