@@ -2,6 +2,7 @@
 
 ListMaster is a simple app made for making todo list. User can add, edit, delete todos, user can divide existing todos into different category. The app is built by using UIKit framework, it follow MVC acchitecture.
 
+![](./App_Overview/Todo_master1.PNG) ![](./App_Overview/todo_master2.PNG)
 ## Features
 - [x] Add todos
 - [x] View todos
