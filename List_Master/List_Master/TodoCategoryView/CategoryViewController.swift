@@ -12,6 +12,7 @@ class CategoryViewController: UIViewController {
     //现实category中每一个item的页面
     
     var cateName:String = ""
+    var vcTitle:String = ""
     
     
     let alertView:AlertSelectView = AlertSelectView.alertSelectView()
@@ -70,7 +71,7 @@ class CategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = self.vcTitle
         contentTable.delegate = self
         contentTable.dataSource = self
         

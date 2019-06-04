@@ -129,6 +129,7 @@ class CategoryListViewController: UIViewController,UITableViewDelegate,UITableVi
         let cateVc:CategoryViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CategoryViewController") as! CategoryViewController
         if (nameContent[indexPath.row] != ""){
             cateVc.cateName = "cateoryList"+nameContent[indexPath.row]
+            cateVc.vcTitle = nameContent[indexPath.row]
             self.navigationController?.pushViewController(cateVc, animated: true)
         }
     }
