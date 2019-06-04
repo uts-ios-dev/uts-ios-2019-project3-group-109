@@ -24,12 +24,13 @@ class TodoList {
         }
     }
     /* loadTodos() is the method that load todolist from UserDefault.standard. Because UserDefault.standard can not store customized object type. Instead of storing object, we are storing parameters that used to construct a object*/
-    static func loadTodos() {
+    static func loadTodos() throws{
         guard let data = UserDefaults.standard.object(forKey: "todoItems") as? [[String: AnyObject]] else {
-            return
+            throw "Can not load todos, todos do not exist!!!"
         }
-      
+        
             todos = data.map {
+                
                 let id = $0["id"] as? String
                 let title = $0["title"] as? String
                 let description = $0["description"] as? String
@@ -37,12 +38,9 @@ class TodoList {
                 let date = $0["date"] as? String
                 let completed = $0["completed"] as? Bool
                 let todo = TodoItem(id: UUID(uuidString: id!)!, title: title!, description: description!, priority: priority!, date: date!)
-                todo.completed = completed ?? false
+                    todo.completed = completed ?? false
                 return todo
-        }
-        
-       
-
+    }
     }
 
    /*saveTodos() is a method to save todolist to local memory by using UserDefault.standard. Again, since UserDefault can not store customized object type, we store the parameters used to construct a object*/
@@ -74,3 +72,4 @@ class TodoList {
         sortedTodos = todos.sorted(by: { $0.reformatPriority().rawValue > $1.reformatPriority().rawValue})
     }
 }
+extension String:Error{}

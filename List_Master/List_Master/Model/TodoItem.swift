@@ -16,7 +16,7 @@ class TodoItem {
     var date: String
     var completed: Bool = false
     
-    init(id:UUID, title:String, description: String?, priority: String, date: String) {
+    init(id:UUID, title:String, description: String?, priority: String, date: String){
         self.id = UUID()
         self.title = title
         self.description = description

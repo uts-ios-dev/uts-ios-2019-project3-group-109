@@ -21,7 +21,11 @@ class CategoryViewController: UIViewController {
     
     @IBAction func importBtnAction(_ sender: Any) {
         
-        TodoList.loadTodos()
+        do{
+            try TodoList.loadTodos()
+        }catch let error{
+            alert(title: "Error!!!", message: error as! String, view: self)
+        }
         
         CategoryImportTodoList.loadTodos(key: self.cateName)
         

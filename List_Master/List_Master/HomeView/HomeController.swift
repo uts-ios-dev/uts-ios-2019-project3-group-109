@@ -23,7 +23,11 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         setupSearchBar()
-        TodoList.loadTodos()
+        do{
+             try TodoList.loadTodos()
+        }catch let error{
+            alert(title: "Error!!!", message: error as! String, view: self)
+        }
         shownTodoList = TodoList.todos
     }
     override func viewDidAppear(_ animated: Bool) {

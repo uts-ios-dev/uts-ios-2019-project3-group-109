@@ -28,15 +28,14 @@ class AddItemController: UIViewController{
         let priority = selectedPriority
         let date = selectedDate!
         if (title == ""){
-            let alert = UIAlertController(title: "Enter Todo title", message: "You must enter a title!!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))           //ensure that title field is not empty
-            self.present(alert, animated: true, completion: nil)
+            alert(title: "Enter todo title", message: "You muct enter a title!!", view: self)
+          
         }else if (description == ""){
-            let alert = UIAlertController(title: "Enter Todo description", message: "You must descript you todo!!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in alert.dismiss(animated: true, completion: nil)}))           //ensure that description field is not empty
-            self.present(alert, animated: true, completion: nil)
+            alert(title: "Enter Todo description", message: "You muat descript your todo!!", view: self)
+            
         }
         else{
+            
             let newItem: TodoItem = TodoItem(id: UUID(), title: title!, description: description, priority: priority, date: date)
             TodoList.addTodo(newTodo: newItem)
             self.navigationController?.popViewController(animated: true)
