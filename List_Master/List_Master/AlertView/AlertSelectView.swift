@@ -13,11 +13,8 @@ class AlertSelectView: UIView {
     var data:NSArray?
     
     var selectArray:NSMutableArray = NSMutableArray.init()
-//    var selectArray:[TodoItem] = []
     
-    //定义block
     typealias sureBtnClickBlock = (_ selectItemArray :NSMutableArray) ->()
-    //创建block变量
     var blockproerty:sureBtnClickBlock!
     
 
@@ -29,10 +26,6 @@ class AlertSelectView: UIView {
     }
     @IBAction func sureBtnAction(_ sender: Any) {
         if blockproerty != nil {
-//            let temp:NSMutableArray = NSMutableArray.init()
-//            for item in self.selectArray{
-//                temp.add(item)
-//            }
             blockproerty(self.selectArray)
             self.dismiss()
         }
@@ -65,7 +58,6 @@ class AlertSelectView: UIView {
     
     func dismiss() -> Void {
         self.selectArray.removeAllObjects()
-//        self.selectArray.removeAll()
         let delegate  = UIApplication.shared.delegate as! AppDelegate
         delegate.window?.viewWithTag(888)?.removeFromSuperview()
     }
@@ -98,7 +90,6 @@ extension AlertSelectView: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:ChosesCell = tableView.dequeueReusableCell(withIdentifier: "ChosesCell", for: indexPath) as! ChosesCell
         let item:TodoItem = self.data?.object(at: indexPath.section) as! TodoItem
-//        item.id = indexPath.row
         cell.leftLab.text = item.title;
         cell.rightLab.text = "Priority:"+item.priority
         cell.isSelect = false

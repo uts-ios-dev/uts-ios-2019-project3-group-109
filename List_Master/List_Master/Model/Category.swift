@@ -10,8 +10,8 @@ import Foundation
 
 class Category {
     var title: String = ""
-    var items = [TodoItem]()//category包含的todolist item
-    var data = [Any]()//里面包含一个category的title（第一位）和里面的所有todolist items
+    var items = [TodoItem]()//Category contains todolist items
+    var data = [Any]()//It contains a category title (the first item) and all the todolist items in it
     
     init(title:String){
         self.title=title

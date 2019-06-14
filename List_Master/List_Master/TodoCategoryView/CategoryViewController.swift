@@ -9,7 +9,6 @@
 import UIKit
 import Foundation
 class CategoryViewController: UIViewController {
-    //现实category中每一个item的页面
     
     var cateName:String = ""
     var vcTitle:String = ""
@@ -21,7 +20,7 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     
     @IBAction func importBtnAction(_ sender: Any) {
-        
+    
         do{
             try TodoList.loadTodos()
         }catch let error{
@@ -99,16 +98,11 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate{
         let item:TodoItem = self.dataArray.object(at: indexPath.row) as! TodoItem
         cell.todoTitle.text = item.title
         cell.todoPriority.text = item.priority
-        
-        //cell.detailTextLabel?.text = TodoList.todos[indexPath.row].priority
         return cell
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        //TodoList.todos.remove(at: indexPath.row)
-        //listTable.reloadData()
         if (editingStyle == .delete) {
-            
-//            let item:TodoItem = self.dataArray.object(at: indexPath.row) as! TodoItem
             CategoryImportTodoList.todos.remove(at: indexPath.item)
             CategoryImportTodoList.saveTodos(key: self.cateName)
             
@@ -116,8 +110,8 @@ extension CategoryViewController: UITableViewDataSource, UITableViewDelegate{
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let item:TodoItem = self.dataArray.object(at: indexPath.row) as! TodoItem
         let detailVc:TodoDetailViewcontroller = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TodoDetailViewcontroller") as! TodoDetailViewcontroller
         detailVc.todoId = item.id
